@@ -23,12 +23,13 @@ else:
     for item in data:
         mediaFeed.items.append(
                 PyMediaRSS2Gen.MediaRSSItem(
-                    guid = PyRSS2Gen.Guid(item['uniqueid']),
+                    #guid = PyRSS2Gen.Guid(item['uniqueid']),
+                    guid = PyRSS2Gen.Guid(item['videourl']),
                     title = item['title'],
                     description = item['description'],
-                    pubDate = item['pubdate'],
+                    pubDate = item['pubdate'] + "T08:00:00-05:00",
                     media_content=PyMediaRSS2Gen.MediaContent(
-                        url=item['videourl'])
+                        url=item['videourl'],type="video/mp4")
                 )
         )
 
