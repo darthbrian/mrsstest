@@ -1,6 +1,7 @@
 import os, datetime
 import PyMediaRSS2Gen, PyRSS2Gen
 import json
+from bs4 import BeautifulSoup
 
 # Read in the JSON file
 if not os.path.isfile('MSNIngest.json'):
@@ -27,10 +28,21 @@ else:
                     guid = PyRSS2Gen.Guid(item['videourl']),
                     title = item['title'],
                     description = item['description'],
-                    pubDate = item['pubdate'] + "T08:00:00-05:00",
+                    #pubDate = item['pubdate'] + "T08:00:00-05:00",
+                    pubDate = item['pubdate'],
                     media_content=PyMediaRSS2Gen.MediaContent(
                         url=item['videourl'],type="video/mp4")
                 )
         )
 
     mediaFeed.write_xml(open("rss2.xml", "w"))
+
+
+    bs = BeautifulSoup(open("rss2.xml"), "lxml-xml")
+    prettyxml = bs.prettify()
+
+    with open('rss2.xml', mode='w', encoding='utf-8') as outfile:
+        outfile.write(prettyxml)
+
+
+
