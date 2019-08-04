@@ -4,6 +4,21 @@ import PyMediaRSS2Gen, PyRSS2Gen
 import json
 from bs4 import BeautifulSoup
 
+"""Create an MRSS file using the data gathered from the msningest project
+
+Incoming data is stored in JSON format and is converted to an RSS file.
+
+msningest project is located here: 
+    https://github.com/darthbrian/msningest
+
+This project uses both the PyRSS2Gen by Andrew Dalke and PyMediaRSS2Gen
+    libraries by Dirk Weise.
+
+PyRSS2Gen - http://www.dalkescientific.com/Python/PyRSS2Gen.html
+
+PyMediaRSS2Gen - https://github.com/wedi/PyMediaRSS2Gen/
+"""
+
 # Check to see if the input JSON file exists
 if not os.path.isfile('MSNIngest.json'):
     # ERROR: File Not Found
